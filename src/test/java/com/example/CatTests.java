@@ -27,7 +27,7 @@ public class CatTests { //
     @Test //
     void testGetFoodCallsEatMeatMethod() throws Exception { //
         Feline mockFeline = mock(Feline.class); //
-        when(mockFeline.eatMeat()).thenReturn(List.of()); //
+        when(mockFeline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба")); //
 
         Cat cat = new Cat(mockFeline); //
         cat.getFood(); //
