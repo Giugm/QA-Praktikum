@@ -12,7 +12,7 @@ public class LionParameterizedTest { //
             "Самка, false" //
     } //
     ) //
-    void lionManeBasedOnSex(String sex, boolean expectedMane) throws Exception { //
+    void testLionManeBasedOnSex(String sex, boolean expectedMane) throws Exception { //
         Feline feline = mock(Feline.class); //
         Lion lion = new Lion(sex, feline); //
         assertEquals(expectedMane, lion.doesHaveMane()); //

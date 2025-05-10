@@ -7,19 +7,31 @@ import static org.mockito.Mockito.*; //
 
 public class CatTests { //
     @Test //
-    void getSoundReturnsMeow() { //
+    void testGetSoundReturnsMeow() { //
         Cat cat = new Cat(mock(Feline.class)); //
-        assertEquals("Мяу", cat.getSound()); //
+        assertEquals("Мяу", cat.getSound(), "Ожидался звук 'Мяу', но получился другой."); //
     } //
 
     @Test //
-    void getFoodReturnsFoodFromPredator() throws Exception { //
+    void testGetFoodReturnsExpectedList() throws Exception { //
         Feline mockFeline = mock(Feline.class); //
-        List<String> expectedFood = List.of("Мясо", "Курица"); //
+        List<String> expectedFood = List.of("Животные", "Птицы", "Рыба"); //
         when(mockFeline.eatMeat()).thenReturn(expectedFood); //
 
         Cat cat = new Cat(mockFeline); //
-        assertEquals(expectedFood, cat.getFood()); //
-        verify(mockFeline).eatMeat(); //
+        List<String> actualFood = cat.getFood(); //
+
+        assertEquals(expectedFood, actualFood, "Метод getFood() должен возвращать список хищной еды."); //
     } //
+
+    @Test //
+    void testGetFoodCallsEatMeatMethod() throws Exception { //
+        Feline mockFeline = mock(Feline.class); //
+        when(mockFeline.eatMeat()).thenReturn(List.of()); //
+
+        Cat cat = new Cat(mockFeline); //
+        cat.getFood(); //
+
+        verify(mockFeline).eatMeat(); //
+    } ////
 }
